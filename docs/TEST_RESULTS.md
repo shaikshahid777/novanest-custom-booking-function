@@ -1,14 +1,40 @@
-# Test Results (fill Status/Evidence after running; attach screenshots)
+# Test Results — NovaNest Custom Booking Function
 
-| TC | Description | Layer | How to run | Expected | Status | Evidence |
-|---|---|---|---|---|---|---|
-| TC-001 | Happy path, trigger after confirmation | Call | Dashboard test call, confirm all fields, say "yes" | Fires after confirm; holding msg; reference read | ☐ Pass | screenshot/video |
-| TC-002 | Parameters correct | Call | Check webhook.site log | 8 params top level, values match call | ☐ Pass | webhook.site screenshot |
-| TC-003 | Early trigger prevention | Call | Omit email, say "ready" | No request; agent asks email | ☐ Pass | empty webhook log |
-| TC-004 | Reference spoken naturally | Call | Happy path, read transcript | No JSON keys spoken | ☐ Pass | transcript |
-| TC-005 | 503 handling | Call | Endpoint URL + `?mode=503` | Defined failure message | ☐ Pass | transcript |
-| TC-006 | Timeout handling | Call | Endpoint URL + `?mode=delay` | After retries, failure message, no hang | ☐ Pass | transcript |
-| TC-007 | Missing field → 400 | Endpoint | `tests/run_tests.sh` | 400 MISSING_FIELD | ☐ Pass | terminal output |
-| TC-008 | Invalid phone → 400 | Endpoint | `tests/run_tests.sh` | 400 INVALID_FORMAT | ☐ Pass | terminal output |
-| TC-009 | Idempotency | Endpoint | `tests/run_tests.sh` | Same reference twice | ☐ Pass | terminal output |
-| TC-010 | No raw error data spoken | Call | Error call, review transcript | No codes/keys spoken | ☐ Pass | transcript |
+**Assessment:** Retell AI Topic 7, Lesson 5 — Custom Function Calling for Real Business Actions  
+**Agent:** NovaNest Consultation Booking Agent  
+**Function:** `create_booking_request`
+
+## Status Definitions
+
+- **Pass:** The expected result is confirmed by the available evidence.
+- **Covered in demo video:** The scenario is covered in the recorded demo; it is not upgraded to an independently verified pass.
+- **Not run:** The test was not run as a completed Retell test.
+
+## Results
+
+| Test ID | Scenario | Status | Evidence |
+|---|---|---|---|
+| TC-001 | Happy path | Covered in demo video | [Loom demo](https://www.loom.com/share/a227ccdad81945b5abc511efccc75fcd) |
+| TC-002 | Parameters at top level | Pass (server log) | [server-log-happy-path.txt](../screenshots/server-log-happy-path.txt) |
+| TC-004 | Reference read naturally | Covered in demo video | [Loom demo](https://www.loom.com/share/a227ccdad81945b5abc511efccc75fcd) |
+| TC-007 | Missing phone | Pass (HTTP 400, MISSING_FIELD) | [server-log-happy-path.txt](../screenshots/server-log-happy-path.txt) |
+| TC-008 | Invalid phone | Pass (HTTP 400, INVALID_FORMAT) | [server-log-happy-path.txt](../screenshots/server-log-happy-path.txt) |
+| TC-009 | Idempotency | Pass (same reference returned twice) | [server-log-happy-path.txt](../screenshots/server-log-happy-path.txt) |
+| TC-003 | Early-trigger prevention | Not run | No verified result |
+| TC-005 | Failure handling | Not run. Failure handling is verified at endpoint level only. | Endpoint failure mode exists; no completed Retell test claimed |
+| TC-006 | Failure / retry scenario | Not run. Failure handling is verified at endpoint level only. | Endpoint failure mode exists; no completed Retell test claimed |
+| TC-010 | Timeout / delayed response | Not run. Failure handling is verified at endpoint level only. | Endpoint delay mode exists; no completed Retell test claimed |
+
+## Supporting Evidence
+
+- [Function configuration and prompt screenshots](../screenshots/)
+- [Happy-path server log](../screenshots/server-log-happy-path.txt)
+- [Loom demo](https://www.loom.com/share/a227ccdad81945b5abc511efccc75fcd)
+
+## Scope and Limitations
+
+The endpoint includes a simulated HTTP 503 mode and a delayed-response mode. These modes exist for testing, but TC-005, TC-006, and TC-010 were not run as completed Retell tests. They remain marked **Not run**.
+
+The mock server returns simulated booking references. It does not integrate with a real calendar or CRM. Idempotency is stored in memory, and endpoint authentication is not implemented.
+
+Test statuses reflect the evidence currently documented in this repository. No unchecked PASS/FAIL placeholders are used.
