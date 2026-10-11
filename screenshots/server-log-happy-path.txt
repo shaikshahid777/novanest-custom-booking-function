@@ -1,0 +1,19 @@
+Evidence: Mock endpoint (server/server.js) terminal output
+Captured on 10 Oct 2026 during the Retell happy-path test (Mia Torres, Buyer Consultation).
+This is copied from the running server terminal (npm start). Timestamps are UTC.
+
+Mock endpoint listening on :3000
+
+2026-10-10T12:26:15.001Z REQUEST  {"caller_first_name":"Mia","caller_last_name":"Torres","caller_phone":"3125550247","caller_email":"mia.torres@gmail.com","service_type":"Buyer Consultation","preferred_window_1":"Tuesday, October 13, 2026 at 10:00 AM CT","preferred_window_2":"Wednesday, October 14, 2026 at 2:00 PM CT","preferred_window_3":""}
+NEW BOOKING NNB-20261010-6547
+
+Notes:
+- All parameters arrive at the top level of the request body (Args Only mode, no wrapper).
+- The ngrok log shows this request as "17:56:14 IST POST /create_booking_request 200 OK" (12:26 UTC = 17:56 IST).
+- The endpoint returned booking reference NNB-20261010-6547, which the agent read to the caller.
+
+Endpoint test log (PowerShell tests, same server session):
+2026-10-10T12:11:11.024Z REQUEST  (caller_phone missing)        -> HTTP 400 MISSING_FIELD
+2026-10-10T12:12:54.962Z REQUEST  (caller_phone = "123")        -> HTTP 400 INVALID_FORMAT
+2026-10-10T12:13:53.556Z REQUEST  (valid payload, first)        -> NEW BOOKING NNB-20261010-1296
+2026-10-10T12:13:53.692Z REQUEST  (same payload, second)        -> DUPLICATE (retry) -> same reference NNB-20261010-1296
