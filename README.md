@@ -116,7 +116,7 @@ The ngrok URL is a free-tunnel address and can change. Use the current forwardin
 | `caller_phone` | Exactly 10 digits | Required |
 | `caller_email` | Email-like string with a domain | Required |
 | `service_type` | Buyer Consultation / Seller Consultation / Investment Review | Required |
-| `preferred_window_1` | Preferred time window | Required |
+| `preferred_window_1` | Required (non-empty). The agent prompt instructs the agent to include the timezone; the endpoint does not validate it. | Required |
 | `preferred_window_2` | Preferred time window | Optional |
 | `preferred_window_3` | Preferred time window | Optional |
 
@@ -180,7 +180,7 @@ The repository includes a shell-based test script:
 npm test
 ```
 
-The test script uses Bash and curl. On Windows, run it from Git Bash or another environment that provides Bash and curl. The independently documented test statuses are listed in [docs/TEST_RESULTS.md](docs/TEST_RESULTS.md).
+**Windows note:** `npm test` runs a Bash script and therefore requires Git Bash (with curl available). In PowerShell, you can test the endpoint directly with `Invoke-RestMethod`. The independently documented test statuses are listed in [docs/TEST_RESULTS.md](docs/TEST_RESULTS.md).
 
 ### 5. Configure Retell
 
@@ -240,16 +240,18 @@ Statuses below are intentionally conservative. “Covered in demo video” does 
 
 | Test ID | Scenario | Status | Evidence |
 |---|---|---|---|
-| TC-001 | Happy path | 🎥 Covered in demo video | [Loom demo](https://www.loom.com/share/a227ccdad81945b5abc511efccc75fcd) |
-| TC-002 | Parameters at top level | ✅ Pass (server log) | [Happy-path server log](screenshots/server-log-happy-path.txt) |
-| TC-004 | Reference read naturally | 🎥 Covered in demo video | [Loom demo](https://www.loom.com/share/a227ccdad81945b5abc511efccc75fcd) |
-| TC-007 | Missing phone | ✅ Pass (HTTP 400, MISSING_FIELD) | [Happy-path server log](screenshots/server-log-happy-path.txt) |
-| TC-008 | Invalid phone | ✅ Pass (HTTP 400, INVALID_FORMAT) | [Happy-path server log](screenshots/server-log-happy-path.txt) |
-| TC-009 | Idempotency | ✅ Pass (same reference returned twice) | [Happy-path server log](screenshots/server-log-happy-path.txt) |
-| TC-003 | Early-trigger prevention | ⏸️ Not run | No verified result |
-| TC-005 | Failure handling | ⏸️ Not run. Failure handling is verified at endpoint level only. | Endpoint simulation exists; no completed Retell test claimed |
-| TC-006 | Failure / retry scenario | ⏸️ Not run. Failure handling is verified at endpoint level only. | Endpoint simulation exists; no completed Retell test claimed |
-| TC-010 | Timeout / delayed response | ⏸️ Not run. Failure handling is verified at endpoint level only. | Endpoint simulation exists; no completed Retell test claimed |
+| TC-001 | Happy path | Covered in demo video | [Loom demo](https://www.loom.com/share/a227ccdad81945b5abc511efccc75fcd) |
+| TC-002 | Parameters at top level | Pass (server log) | [Happy-path server log](screenshots/server-log-happy-path.txt) |
+| TC-003 | Early trigger prevention | Not run | No verified result |
+| TC-004 | Reference read naturally | Covered in demo video | [Loom demo](https://www.loom.com/share/a227ccdad81945b5abc511efccc75fcd) |
+| TC-005 | 503 handling | Not run | No verified result |
+| TC-006 | Timeout and retry handling | Not run | No verified result |
+| TC-007 | Missing phone | Pass (HTTP 400, MISSING_FIELD) | [PowerShell endpoint test screenshot](screenshots/Screenshot%202026-10-10%20214519.png) |
+| TC-008 | Invalid phone | Pass (HTTP 400, INVALID_FORMAT) | [PowerShell endpoint test screenshot](screenshots/Screenshot%202026-10-10%20214519.png) |
+| TC-009 | Idempotency | Pass (same reference returned twice) | [PowerShell endpoint test screenshot](screenshots/Screenshot%202026-10-10%20214519.png) |
+| TC-010 | No raw error data spoken to the caller | Not run | No verified result |
+
+Failure handling is verified at endpoint level only (`?mode=503` and `?mode=delay` exist in the server); no Retell failure test was run.
 
 See [docs/TEST_RESULTS.md](docs/TEST_RESULTS.md) for the standalone results record.
 
