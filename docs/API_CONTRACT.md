@@ -12,7 +12,7 @@
 | caller_phone | string | Yes | Exactly 10 digits |
 | caller_email | string | Yes | Contains `@` and a domain |
 | service_type | string | Yes | Buyer Consultation / Seller Consultation / Investment Review |
-| preferred_window_1 | string | Yes | Non-empty, includes timezone |
+| preferred_window_1 | string | Yes | Required (non-empty). The agent prompt instructs the agent to include the timezone; the endpoint does not validate it. |
 | preferred_window_2 | string | No | String or empty |
 | preferred_window_3 | string | No | String or empty |
 
