@@ -1,6 +1,6 @@
 Evidence: Mock endpoint (server/server.js) terminal output
 Captured on 10 Oct 2026 during the Retell happy-path test (Mia Torres, Buyer Consultation).
-This is copied from the running server terminal (npm start). Timestamps are UTC.
+The 12:26:15 request and NEW BOOKING line below are verbatim copies from the running server terminal (npm start). The endpoint-test lines at the bottom are a manually written summary, not a verbatim terminal transcript. Timestamps are UTC.
 
 Mock endpoint listening on :3000
 
@@ -12,7 +12,7 @@ Notes:
 - The ngrok log shows this request as "17:56:14 IST POST /create_booking_request 200 OK" (12:26 UTC = 17:56 IST).
 - The endpoint returned booking reference NNB-20261010-6547, which the agent read to the caller.
 
-Endpoint test log (PowerShell tests, same server session):
+Endpoint test log (summarized from the same terminal session; see Screenshot 2026-10-10 214519.png for the original PowerShell output):
 2026-10-10T12:11:11.024Z REQUEST  (caller_phone missing)        -> HTTP 400 MISSING_FIELD
 2026-10-10T12:12:54.962Z REQUEST  (caller_phone = "123")        -> HTTP 400 INVALID_FORMAT
 2026-10-10T12:13:53.556Z REQUEST  (valid payload, first)        -> NEW BOOKING NNB-20261010-1296
