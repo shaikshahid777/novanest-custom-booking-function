@@ -198,35 +198,35 @@ The video demonstrates the recorded workflow. See the status table below to dist
 
 ## Evidence Screenshots
 
-The repository currently stores screenshots using timestamp-based filenames. The images below are embedded from those existing files.
+The following screenshots use the exact filenames stored in the repository.
 
-![Screenshot captured October 10, 2026, at 21:28](screenshots/Screenshot%202026-10-10%20212813.png)
+![Function configuration — main settings](screenshots/Screenshot%202026-10-11%20072017.png)
 
-*Evidence capture saved on October 10, 2026.*
+*Function configuration overview.*
 
-![Screenshot captured October 10, 2026, at 21:43](screenshots/Screenshot%202026-10-10%20214307.png)
+![Function configuration — Args Only and waiting behaviour](screenshots/Screenshot%202026-10-11%20072158.png)
 
-*Evidence capture saved on October 10, 2026.*
+*Args Only and Talk While Waiting settings.*
 
-![Screenshot captured October 10, 2026, at 21:45](screenshots/Screenshot%202026-10-10%20214519.png)
+![Function parameters](screenshots/Screenshot%202026-10-10%20214307.png)
 
-*Evidence capture saved on October 10, 2026.*
+*Configured function parameter list.*
 
-![Screenshot captured October 11, 2026, at 07:20](screenshots/Screenshot%202026-10-11%20072017.png)
+![Prompt Path 1 — submission steps](screenshots/Screenshot%202026-10-11%20072338.png)
 
-*Evidence capture saved on October 11, 2026.*
+*Prompt instructions for asking permission and submitting the request.*
 
-![Screenshot captured October 11, 2026, at 07:21](screenshots/Screenshot%202026-10-11%20072158.png)
+![Function rules and result handling](screenshots/Screenshot%202026-10-11%20072400.png)
 
-*Evidence capture saved on October 11, 2026.*
+*Rules for function calls and handling the result.*
 
-![Screenshot captured October 11, 2026, at 07:23](screenshots/Screenshot%202026-10-11%20072338.png)
+![Endpoint tests](screenshots/Screenshot%202026-10-10%20214519.png)
 
-*Evidence capture saved on October 11, 2026.*
+*PowerShell evidence for the endpoint tests.*
 
-![Screenshot captured October 11, 2026, at 07:24](screenshots/Screenshot%202026-10-11%20072400.png)
+![ngrok request activity](screenshots/Screenshot%202026-10-10%20212813.png)
 
-*Evidence capture saved on October 11, 2026.*
+*ngrok request activity captured during the workflow.*
 
 ### Happy-path server log
 
