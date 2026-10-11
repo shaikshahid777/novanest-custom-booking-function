@@ -1,1 +1,0 @@
-{ "name": "retell-topic7-create-booking-request", "version": "1.0.0", "description": "Mock endpoint + docs for Retell AI custom function create_booking_request", "main": "server/server.js", "scripts": { "start": "node server/server.js", "test": "bash tests/run_tests.sh" }, "license": "MIT" }
